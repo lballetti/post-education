@@ -1,18 +1,14 @@
 package com.solvd.pages;
 
-import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
-public class Searchpage {
-    
-    private WebDriver driver;
+public class Searchpage extends AbstractPage{
 
     @FindBy(css = ".search-container input")
     private WebElement searchBox;
@@ -26,25 +22,22 @@ public class Searchpage {
     private List<WebElement> searchResults;
     
     public Searchpage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
-    public void search(String s){
-        searchBox.sendKeys(s);
-        searchButton.click();
-    }
-
-    public void setFilter(String ...filters){
-        filterButton.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+    public Searchpage setFilter(String ...filters){
+        click(filterButton, "Open Filters button");
         for(String filter : filters){
-            driver.findElement(By.xpath("//label[contains(text(),'" + filter +"')]")).click();
+            getDriver().findElement(By.xpath("//label[contains(text(),'" + filter +"')]")).click();
         }
-        applyFilter.click();
+        click(applyFilter, "Apply Filter button");
+        click(filterButton, "Open Filters button");
+        click(applyFilter, "Apply Filter button");
+        return new Searchpage(getDriver());
     }
 
     public List<WebElement> getSearchResults() {
+        // searchResults = getDriver().findElements(By.cssSelector("div[data-search-results] li"));
         return searchResults;
     }
 }
