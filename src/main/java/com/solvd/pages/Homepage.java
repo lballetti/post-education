@@ -19,7 +19,6 @@ public class Homepage extends AbstractPage{
     
     public Homepage(WebDriver driver){
         super(driver);
-        getDriver().get("https://www.etsy.com");
     }
 
     public Searchpage search(String s){

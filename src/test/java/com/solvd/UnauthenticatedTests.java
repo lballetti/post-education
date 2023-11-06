@@ -19,6 +19,7 @@ public class UnauthenticatedTests extends AbstractTest{
  
     @Test
     public void searchItems(){
+        getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
         Searchpage searchpage = homepage.search("dice");
         List<WebElement> elements = searchpage.getSearchResults();
@@ -31,6 +32,7 @@ public class UnauthenticatedTests extends AbstractTest{
 
     @Test
     public void testFilter(){
+        getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
         Searchpage searchpage = homepage.search("dice");
         searchpage = searchpage.setFilter("On sale");

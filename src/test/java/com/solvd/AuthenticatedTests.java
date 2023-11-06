@@ -16,6 +16,7 @@ public class AuthenticatedTests extends AbstractTest{
     //It gets detected as a bot
     @Test
     public void loginTest(){
+        getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
         homepage.clickSignin().login("riroy86360@jybra.com", "Thisistestingaccount1.");
         homepage.waitElement(By.cssSelector("h1.welcome-message-text:first-child"));
