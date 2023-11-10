@@ -1,21 +1,21 @@
-package com.solvd.pages;
+package com.solvd.framework;
 
 import java.time.Duration;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractPage {
     private WebDriver driver;
-    private static final Logger logger = LogManager.getLogger(AbstractPage.class);
-    Wait<WebDriver> wait;
+    private static final Logger logger = LoggerFactory.getLogger(AbstractPage.class);
+    private Wait<WebDriver> wait;
     
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -27,8 +27,9 @@ public abstract class AbstractPage {
         return driver;
     }
 
-    public void click(WebElement element, String elementName) {
+    protected void click(WebElement element, String elementName) {
         try {
+            deleteAds();
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             logger.info("Clicked on " + elementName);
@@ -37,8 +38,9 @@ public abstract class AbstractPage {
         }
     }
 
-    public void sendKeys(WebElement element, String elementName, String text){
+    protected void sendKeys(WebElement element, String elementName, String text){
         try {
+            deleteAds();
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.sendKeys(text);
             logger.info("'"+text + "' written into " + elementName);
@@ -46,11 +48,13 @@ public abstract class AbstractPage {
             logger.error("Error sending keys to " + elementName, e);
         }
     }
-    public void waitElement(By elementBy){
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(elementBy));
-        } catch (Exception e) {
-            logger.error("Wait wrror ", e);
-        }
+
+    protected void refreshElements(){
+        PageFactory.initElements(driver, this);
+    }
+
+    private void deleteAds(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
     }
 }
