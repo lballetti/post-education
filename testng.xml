@@ -1,0 +1,16 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="First Suite" parallel="tests">
+    <test name="Test Automation chrome">
+        <parameter name="browserName" value="chrome"/>
+        <classes>
+            <class name="com.solvd.UnauthenticatedTests"/>
+        </classes>
+    </test>
+    <test name="Test Automation firefox">
+        <parameter name="browserName" value="firefox"/>
+        <classes>
+            <class name="com.solvd.UnauthenticatedTests"/>
+        </classes>
+    </test>
+</suite>

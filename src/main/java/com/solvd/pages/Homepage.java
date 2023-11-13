@@ -1,35 +1,29 @@
 package com.solvd.pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.solvd.components.SigninComponent;
 
-public class Homepage extends AbstractPage{
-    
-    @FindBy(css = ".search-container input")
-    private WebElement searchBox;
+public class Homepage extends BasePage{
 
-    @FindBy(css = "[data-id= gnav-search-submit-button]")
-    private WebElement searchButton;
+    @FindBy(css = ".features_items div.col-sm-4")
+    private List<WebElement> products;
 
-    @FindBy(css = "button.signin-header-action")
-    private WebElement signinButton;
-    
-    public Homepage(WebDriver driver){
+    @FindBy(css = "#cartModal a")
+    private WebElement viewCartModalButton;
+
+    public Homepage(WebDriver driver) {
         super(driver);
-        getDriver().get("https://www.etsy.com");
+    }
+    
+    public CartPage addToCartandView(int n){
+        click(products.get(n).findElement(By.cssSelector(".productinfo .add-to-cart")), "Add to cart button of element "+ n);
+        click(viewCartModalButton, "View Cart Modal Button");
+        return new CartPage(getDriver());
     }
 
-    public Searchpage search(String s){
-        sendKeys(searchBox, "Search Box", s);
-        click(searchButton, "Search Button");
-        return new Searchpage(getDriver());
-    }
-
-    public SigninComponent clickSignin(){
-        click(signinButton, "Sign in button");
-        return new SigninComponent(getDriver());
-    }
 }
