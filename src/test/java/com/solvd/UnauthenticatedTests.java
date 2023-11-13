@@ -17,7 +17,7 @@ public class UnauthenticatedTests extends AbstractTest{
 
     private static final Logger logger = LoggerFactory.getLogger(UnauthenticatedTests.class);
  
-    @Test
+    @Test(threadPoolSize = 2, testName = "searchItemsTest")
     public void searchItemsTest(){
         getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
@@ -26,7 +26,7 @@ public class UnauthenticatedTests extends AbstractTest{
         logger.info("searchItemsTest PASSED");
     }
 
-    @Test
+    @Test(testName = "loginInvalidTest")
     public void loginInvalidTest(){
         getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
@@ -36,7 +36,7 @@ public class UnauthenticatedTests extends AbstractTest{
         logger.info("loginInvalidTest PASSED");
     }
 
-    @Test
+    @Test(testName = "searchProductsTest")
     public void searchProductTest(){
         getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
@@ -46,7 +46,7 @@ public class UnauthenticatedTests extends AbstractTest{
         logger.info("searchProductTest PASSED");
     }
 
-    @Test
+    @Test(testName = "signupAndDelete")
     public void signupAndDeleteTest(){
         getDriver().get(url);
         Homepage homepage = new Homepage(getDriver());
@@ -59,5 +59,12 @@ public class UnauthenticatedTests extends AbstractTest{
         messagePage = homepage.clickDeleteAcc();
         Assert.assertEquals(messagePage.getTitle(), "ACCOUNT DELETED!");
         logger.info("signupAndDeleteTest PASSED");
+    }
+    @Test(testName = "failTest")
+    public void failTest(){
+        getDriver().get(url);
+        Homepage homepage = new Homepage(getDriver());
+        AuthPage authPage = homepage.clickAuth();
+        Assert.assertEquals(false, true);
     }
 }

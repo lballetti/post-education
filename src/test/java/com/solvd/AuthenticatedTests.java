@@ -48,4 +48,5 @@ public class AuthenticatedTests extends AbstractTest{
         cartPage.deleteFromCart(0);
         Assert.assertTrue(cartPage.getCartItems().get(0).isDisplayed());
     }
+
 }

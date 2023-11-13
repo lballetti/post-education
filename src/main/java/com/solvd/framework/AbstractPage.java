@@ -2,6 +2,7 @@ package com.solvd.framework;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,7 @@ public abstract class AbstractPage {
     protected void click(WebElement element, String elementName) {
         try {
             deleteAds();
+            driver.findElement(By.xpath("//html")).click();
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             logger.info("Clicked on " + elementName);
