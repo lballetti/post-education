@@ -5,12 +5,13 @@
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="com.solvd.UnauthenticatedTests"/>
+            <class name="com.solvd.AuthenticatedTests"/>
         </classes>
     </test>
-    <test name="Test Automation firefox">
+    <!-- <test name="Test Automation firefox">
         <parameter name="browserName" value="firefox"/>
         <classes>
             <class name="com.solvd.UnauthenticatedTests"/>
         </classes>
-    </test>
+    </test> -->
 </suite>

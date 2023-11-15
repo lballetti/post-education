@@ -6,23 +6,23 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.solvd.framework.AbstractTest;
 import com.solvd.pages.AuthPage;
 import com.solvd.pages.CartPage;
 import com.solvd.pages.CheckoutPage;
 import com.solvd.pages.Homepage;
 import com.solvd.pages.MessagePage;
 import com.solvd.pages.PaymentPage;
+import com.zebrunner.carina.core.IAbstractTest;
 
-public class AuthenticatedTests extends AbstractTest{
+public class AuthenticatedTests implements IAbstractTest{
     
     private static final Logger logger = LoggerFactory.getLogger(AuthenticatedTests.class);
     private Homepage homepage;
 
     @BeforeMethod
     public void beforeClassMethod(){
-        getDriver().get(url);
         homepage = new Homepage(getDriver());
+        homepage.open();
         AuthPage authPage = homepage.clickAuth();
         authPage.login("riroy86360@jybra.com", "Thisistestingaccount1.");
     }
@@ -44,9 +44,9 @@ public class AuthenticatedTests extends AbstractTest{
 
     @Test
     public void removeItemFromCartTest(){
-        CartPage cartPage = homepage.addToCartandView(0);
-        cartPage.deleteFromCart(0);
-        Assert.assertTrue(cartPage.getCartItems().get(0).isDisplayed());
+        CartPage cartPage = homepage.addToCartandView("Men Tshirt");
+        cartPage.deleteFromCart("Men Tshirt");
+        Assert.assertTrue(cartPage.isItemPresent("Men Tshirt"));
     }
 
 }
