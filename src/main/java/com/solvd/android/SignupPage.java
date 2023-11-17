@@ -1,11 +1,19 @@
-package com.solvd.pages;
+package com.solvd.android;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.solvd.common.MessagePageBase;
+import com.solvd.common.SignupPageBase;
+import com.solvd.components.Header;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-public class SignupPage extends BasePage{
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = SignupPageBase.class)
+public class SignupPage extends SignupPageBase{
+
+    @FindBy(id = "header")
+    private Header header;
 
     @FindBy(css = "[data-qa='password']")
     private ExtendedWebElement passInput;
@@ -37,8 +45,14 @@ public class SignupPage extends BasePage{
     public SignupPage(WebDriver driver) {
         super(driver);
     }
+
+    @Override
+    public Header getHeader() {
+        return header;
+    }
     
-    public MessagePage fillWithStandardData(){
+    @Override
+    public MessagePageBase fillWithStandardData(){
         passInput.type("deletepass");
         firstName.type("delete");
         lastName.type("account");
@@ -47,7 +61,8 @@ public class SignupPage extends BasePage{
         city.type( "Paris");
         zip.type( "123456");
         mobileNumber.type( "654321");
-        click(createAccBtn);
-        return new MessagePage(getDriver());
+        createAccBtn.click();
+        return initPage(MessagePageBase.class, driver);
     }
+
 }

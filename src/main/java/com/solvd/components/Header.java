@@ -1,19 +1,22 @@
-package com.solvd.pages;
+package com.solvd.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.solvd.common.AuthPageBase;
+import com.solvd.common.CartPageBase;
+import com.solvd.common.HomepageBase;
+import com.solvd.common.MessagePageBase;
+import com.solvd.common.ProductsPageBase;
+import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 
-public abstract class BasePage extends AbstractPage {
-
-
-    // Header locators 
-    // ----------------------------------------------------------------
-    // Unauthenticated
+public class Header extends AbstractUIObject implements ICustomTypePageFactory{
+    
     @FindBy(css = ".logo a")
     private ExtendedWebElement logo;
     @FindBy(css = ".nav i.fa-home")
@@ -33,41 +36,41 @@ public abstract class BasePage extends AbstractPage {
     @FindBy(css = ".nav i.fa-trash-o")
     private ExtendedWebElement deleteAccount;
 
-    protected BasePage(WebDriver driver) {
-        super(driver);
+    public Header(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
     public void clickLogo() {
         click(logo);
     }
 
-    public Homepage clickHome() {
+    public HomepageBase clickHome() {
         click(homeBtn);
-        return new Homepage(getDriver());
+        return initPage(HomepageBase.class, driver);
     }
 
-    public ProductsPage clickProducts() {
+    public ProductsPageBase clickProducts() {
         click(productsBtn);
-        return new ProductsPage(getDriver());
+        return initPage(ProductsPageBase.class, driver);
     }
 
-    public CartPage clickCart() {
+    public CartPageBase clickCart() {
         click(cartBtn);
-        return new CartPage(getDriver());
+        return initPage(CartPageBase.class, driver);
     }
 
-    public AuthPage clickAuth() {
+    public AuthPageBase clickAuth() {
         click(authBtn);
-        return new AuthPage(getDriver());
+        return initPage(AuthPageBase.class, driver);
     }
 
     public void clickContact() {
         click(contactBtn);
     }
 
-    public MessagePage clickDeleteAcc(){
+    public MessagePageBase clickDeleteAcc(){
         click(deleteAccount);
-        return new MessagePage(getDriver());
+        return initPage(MessagePageBase.class, driver);
     }
 
     public boolean isLoggedin(){
@@ -80,7 +83,7 @@ public abstract class BasePage extends AbstractPage {
         deleteAds();
     }
 
-    private void deleteAds(){
+    protected void deleteAds(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
         driver.findElement(By.xpath("//html")).click();

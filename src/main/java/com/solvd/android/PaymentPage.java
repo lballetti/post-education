@@ -1,11 +1,19 @@
-package com.solvd.pages;
+package com.solvd.android;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.solvd.common.MessagePageBase;
+import com.solvd.common.PaymentPageBase;
+import com.solvd.components.Header;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-public class PaymentPage extends BasePage{
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = PaymentPageBase.class)
+public class PaymentPage extends PaymentPageBase{
+
+    @FindBy(id = "header")
+    private Header header;
     
     @FindBy(css = "[data-qa='name-on-card']")
     private ExtendedWebElement nameOnCardInput;
@@ -25,32 +33,43 @@ public class PaymentPage extends BasePage{
     @FindBy(css = "data-qa='pay-button']")
     private ExtendedWebElement payBtn;
 
-    protected PaymentPage(WebDriver driver) {
+    public PaymentPage(WebDriver driver) {
         super(driver);
     }
     
+    @Override
     public void setCardName(String cardName){
         nameOnCardInput.type(cardName);
     }
 
+    @Override
     public void setCardNumber(String cardNumber){
         cardNumberInput.type(cardNumber);
     }
 
+    @Override
     public void setCVC(int cvc){
         cvcInput.type(cvc+"");
     }
 
+    @Override
     public void setExpiryMonth(int month){
         expiryMonthInput.type(month+"");
     }
 
+    @Override
     public void setExpiryYear(int year){
         expiryYearInput.type(year+"");
     }
 
-    public MessagePage clickPay(){
-        click(payBtn);
-        return new MessagePage(getDriver());
+    @Override
+    public MessagePageBase clickPay(){
+        payBtn.click();
+        return initPage(MessagePageBase.class, driver);
+    }
+
+    @Override
+    public Header getHeader() {
+        return header;
     }
 }

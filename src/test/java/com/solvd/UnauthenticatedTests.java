@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.solvd.pages.AuthPage;
-import com.solvd.pages.Homepage;
-import com.solvd.pages.MessagePage;
-import com.solvd.pages.ProductsPage;
-import com.solvd.pages.SignupPage;
+import com.solvd.common.AuthPageBase;
+import com.solvd.common.HomepageBase;
+import com.solvd.common.MessagePageBase;
+import com.solvd.common.ProductsPageBase;
+import com.solvd.common.SignupPageBase;
 import com.zebrunner.carina.core.IAbstractTest;
 
 public class UnauthenticatedTests implements IAbstractTest{
@@ -18,19 +18,19 @@ public class UnauthenticatedTests implements IAbstractTest{
  
     @Test(testName = "searchItemsTest")
     public void searchItemsTest(){
-        Homepage homepage = new Homepage(getDriver());
+        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
-        homepage.clickProducts();
-        ProductsPage productsPage = homepage.clickProducts();
+        homepage.getHeader().clickProducts();
+        ProductsPageBase productsPage = homepage.getHeader().clickProducts();
         productsPage.logItems();
         logger.info("searchItemsTest PASSED");
     }
 
     @Test(testName = "loginInvalidTest")
     public void loginInvalidTest(){
-        Homepage homepage = new Homepage(getDriver());
+        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
-        AuthPage authPage = homepage.clickAuth();
+        AuthPageBase authPage = homepage.getHeader().clickAuth();
         authPage.login("riroy86360@jybra.com", "Failpass");
         Assert.assertTrue(authPage.IsErrorShown());
         logger.info("loginInvalidTest PASSED");
@@ -38,10 +38,10 @@ public class UnauthenticatedTests implements IAbstractTest{
 
     @Test(testName = "searchProductsTest")
     public void searchProductTest(){
-        Homepage homepage = new Homepage(getDriver());
+        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
-        homepage.clickProducts();
-        ProductsPage productsPage = homepage.clickProducts();
+        homepage.getHeader().clickProducts();
+        ProductsPageBase productsPage = homepage.getHeader().clickProducts();
         productsPage = productsPage.search("polo");
         Assert.assertTrue(productsPage.isProductPresent("Premium Polo T-Shirts"));
         logger.info("searchProductTest PASSED");
@@ -49,24 +49,24 @@ public class UnauthenticatedTests implements IAbstractTest{
 
     @Test(testName = "signupAndDelete")
     public void signupAndDeleteTest(){
-        Homepage homepage = new Homepage(getDriver());
+        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
-        AuthPage authPage = homepage.clickAuth();
-        SignupPage signupPage= authPage.signup("deletableAccount", "deletableAccount@delete.acc");
-        MessagePage messagePage = signupPage.fillWithStandardData();
+        AuthPageBase authPage = homepage.getHeader().clickAuth();
+        SignupPageBase signupPage= authPage.signup("deletableAccount", "deletableAccount@delete.acc");
+        MessagePageBase messagePage = signupPage.fillWithStandardData();
         Assert.assertEquals(messagePage.getTitle(),"ACCOUNT CREATED!");
-        homepage = messagePage.clickHome();
-        messagePage.clickHome();
-        messagePage = homepage.clickDeleteAcc();
+        homepage = messagePage.getHeader().clickHome();
+        messagePage.getHeader().clickHome();
+        messagePage = homepage.getHeader().clickDeleteAcc();
         Assert.assertEquals(messagePage.getTitle(), "ACCOUNT DELETED!");
         logger.info("signupAndDeleteTest PASSED");
     }
 
-    @Test(testName = "failTest")
-    public void failTest(){
-        Homepage homepage = new Homepage(getDriver());
-        homepage.open();
-        AuthPage authPage = homepage.clickAuth();
-        Assert.assertTrue(authPage.IsErrorShown());
-    }
+    // @Test(testName = "failTest")
+    // public void failTest(){
+    //     HomepageBase homepage = initPage(HomepageBase.class, getDriver());
+    //     homepage.open();
+    //     AuthPageBase authPage = homepage.getHeader().clickAuth();
+    //     Assert.assertTrue(authPage.IsErrorShown());
+    // }
 }
