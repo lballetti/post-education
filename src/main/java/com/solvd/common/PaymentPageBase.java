@@ -21,6 +21,8 @@ public abstract class PaymentPageBase extends AbstractPage{
 
     public abstract void setExpiryYear(int year);
 
+    public abstract void fillWithStandardData();
+
     public abstract MessagePageBase clickPay();
 
     public abstract Header getHeader();

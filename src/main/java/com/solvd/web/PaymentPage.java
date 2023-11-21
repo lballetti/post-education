@@ -1,4 +1,4 @@
-package com.solvd.web.pages;
+package com.solvd.web;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -66,6 +66,15 @@ public class PaymentPage extends PaymentPageBase{
     public MessagePageBase clickPay(){
         payBtn.click();
         return initPage(MessagePageBase.class, driver);
+    }
+
+    @Override
+    public void fillWithStandardData(){
+        setCardName("Riroy");
+        setCardNumber("2351783928493847");
+        setCVC(123);
+        setExpiryMonth(11);
+        setExpiryYear(2024);
     }
 
     @Override

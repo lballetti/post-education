@@ -9,7 +9,7 @@ import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = SignupPageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SignupPageBase.class)
 public class SignupPage extends SignupPageBase{
 
     @FindBy(id = "header")
@@ -61,6 +61,7 @@ public class SignupPage extends SignupPageBase{
         city.type( "Paris");
         zip.type( "123456");
         mobileNumber.type( "654321");
+        createAccBtn.click();
         createAccBtn.click();
         return initPage(MessagePageBase.class, driver);
     }

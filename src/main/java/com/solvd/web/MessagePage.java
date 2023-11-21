@@ -1,4 +1,4 @@
-package com.solvd.web.pages;
+package com.solvd.web;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;

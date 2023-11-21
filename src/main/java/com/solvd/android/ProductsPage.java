@@ -14,7 +14,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = ProductsPageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ProductsPageBase.class)
 public class ProductsPage extends ProductsPageBase{
 
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);

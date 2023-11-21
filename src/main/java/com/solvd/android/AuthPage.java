@@ -9,7 +9,7 @@ import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-    @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = AuthPageBase.class)
+    @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AuthPageBase.class)
 public class AuthPage extends AuthPageBase {
 
     @FindBy(id = "header")
@@ -42,6 +42,7 @@ public class AuthPage extends AuthPageBase {
         signupNameInput.type(name);
         signupEmailInput.type(email);
         signupButton.click();
+        signupButton.click();
         return initPage(SignupPageBase.class, driver);
     }
 
@@ -49,6 +50,7 @@ public class AuthPage extends AuthPageBase {
     public void login(String email, String password){
         emailLoginInput.type(email);
         passwordLoginInput.type(password);
+        loginButton.click();
         loginButton.click();
     }
 

@@ -9,7 +9,7 @@ import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = MessagePageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MessagePageBase.class)
 public class MessagePage extends MessagePageBase{
 
     @FindBy(id = "header")

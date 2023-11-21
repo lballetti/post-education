@@ -9,7 +9,7 @@ import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = PaymentPageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PaymentPageBase.class)
 public class PaymentPage extends PaymentPageBase{
 
     @FindBy(id = "header")
@@ -65,7 +65,17 @@ public class PaymentPage extends PaymentPageBase{
     @Override
     public MessagePageBase clickPay(){
         payBtn.click();
+        payBtn.click();
         return initPage(MessagePageBase.class, driver);
+    }
+
+    @Override
+    public void fillWithStandardData(){
+        setCardName("Riroy");
+        setCardNumber("2351783928493847");
+        setCVC(123);
+        setExpiryMonth(11);
+        setExpiryYear(2024);
     }
 
     @Override

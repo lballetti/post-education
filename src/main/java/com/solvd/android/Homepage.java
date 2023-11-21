@@ -12,7 +12,7 @@ import com.solvd.components.ItemBox;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomepageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomepageBase.class)
 public class Homepage extends HomepageBase {
     
     @FindBy(id = "header")
