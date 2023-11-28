@@ -10,8 +10,6 @@ import com.solvd.common.HomepageBase;
 import com.solvd.common.MessagePageBase;
 import com.solvd.common.ProductsPageBase;
 import com.solvd.common.SignupPageBase;
-import com.solvd.utils.MobileContextUtils;
-import com.solvd.utils.MobileContextUtils.View;
 import com.zebrunner.carina.core.IAbstractTest;
 
 public class UnauthenticatedTests implements IAbstractTest{
@@ -22,10 +20,7 @@ public class UnauthenticatedTests implements IAbstractTest{
     public void searchItemsTest(){
         HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
-        MobileContextUtils contextHelper = new MobileContextUtils();
-        contextHelper.switchMobileContext(View.WEB);
         homepage.getHeader().clickProducts();
-        contextHelper.switchMobileContext(View.NATIVE);
         ProductsPageBase productsPage = homepage.getHeader().clickProducts();
         productsPage.logItems();
         logger.info("searchItemsTest PASSED");
@@ -60,8 +55,7 @@ public class UnauthenticatedTests implements IAbstractTest{
         SignupPageBase signupPage= authPage.signup("deletableAccount", "deletableAccount@delete.acc");
         MessagePageBase messagePage = signupPage.fillWithStandardData();
         Assert.assertEquals(messagePage.getTitle(),"ACCOUNT CREATED!");
-        homepage = messagePage.getHeader().clickHome();
-        messagePage.getHeader().clickHome();
+        homepage = messagePage.getHeader().clickHome();        messagePage.getHeader().clickHome();
         messagePage = homepage.getHeader().clickDeleteAcc();
         Assert.assertEquals(messagePage.getTitle(), "ACCOUNT DELETED!");
         logger.info("signupAndDeleteTest PASSED");

@@ -1,29 +1,25 @@
 package com.solvd;
 
-import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import com.solvd.common.HomepageBase;
 import com.solvd.common.ProductsPageBase;
-import com.solvd.utils.MobileContextUtils;
-import com.solvd.utils.MobileContextUtils.View;
+import com.solvd.common.mobile.BrowserPageBase;
 import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 
-public class MobileTests implements IAbstractTest{
+public class MobileTests implements IAbstractTest, IMobileUtils{
     
     private static final Logger logger = LoggerFactory.getLogger(MobileTests.class);
  
     @Test(testName = "new Tab test")
-    public void searchItemsTest(){
+    public void searchNewTabAndroidTest(){
         HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
-        MobileContextUtils contextHelper = new MobileContextUtils();
-        contextHelper.switchMobileContext(View.NATIVE);
-        getDriver().findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Switch or close tabs\"]")).click();
-        getDriver().findElement(By.xpath("//android.widget.ImageView[@content-desc=\"New tab\"]")).click();
-        contextHelper.switchMobileContext(View.WEB);
+        BrowserPageBase browserPageBase = initPage(BrowserPageBase.class, getDriver());
+        browserPageBase.newTab();
         getDriver().get("https://www.automationexercise.com/");
         ProductsPageBase productsPage = homepage.getHeader().clickProducts();
         productsPage.logItems();
