@@ -1,0 +1,12 @@
+name: GitHub Actions - Jenkins
+run-name: Jenkins run
+on: push
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+        uses:
+          jenkinsci/jfr-container-action@master
+        with:
+          command: run
+          jenkinsfile: Jenkinsfile
