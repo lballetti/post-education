@@ -1,0 +1,25 @@
+{
+    "chrome": {
+       "default": "112.0",
+       "versions": {
+          "100.0": {
+             "image": "sskorol/selenoid_chromium_vnc:100.0",
+             "port": "4444"
+          },
+          "112.0": {
+             "image": "mag1art/selenoid_chromium_vnc:112.0",
+             "port": "4444"
+          }
+       }
+    },
+    "firefox": {
+       "default": "116.0",
+       "versions": {
+          "116.0": {
+             "image": "mag1art/selenoid_firefox_vnc:116.0",
+             "port": "4444",
+             "path": "/wd/hub"
+          }
+       }
+    }
+ }

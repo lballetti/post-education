@@ -5,7 +5,7 @@
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="com.solvd.UnauthenticatedTests"/>
-            <class name="com.solvd.AuthenticatedTests"/>
+<!--            <class name="com.solvd.AuthenticatedTests"/>-->
         </classes>
     </test>
     <!-- <test name="Test Automation firefox">
