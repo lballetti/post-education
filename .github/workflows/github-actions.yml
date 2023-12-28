@@ -7,6 +7,6 @@ jobs:
     steps:
         uses:
           jenkinsci/jfr-container-action@master
-        with:
-          command: run
-          jenkinsfile: Jenkinsfile
+          with:
+            command: run
+            jenkinsfile: Jenkinsfile
