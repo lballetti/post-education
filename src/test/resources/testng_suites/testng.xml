@@ -6,7 +6,8 @@
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEmail" value="lballetti@solvd.com"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/> 
-
+    <parameter name="provider" value="selenium"/>
+    
     <test name="Test Automation chrome">
         <parameter name="browserName" value="chrome"/>
         <classes>
