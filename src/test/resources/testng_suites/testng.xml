@@ -5,7 +5,7 @@
     <parameter name="jenkinsJobName" value="Job1"/>
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEmail" value="lballetti@solvd.com"/>
-    <parameter name="jenkinsEnvironments" value="DEMO"/> 
+    <parameter name="jenkinsEnvironments" value="DEMO"/>
     <parameter name="provider" value="selenium"/>
     <parameter name="jenkinsRegressionPipeline" value="competency-regression-pipeline"/>
     <parameter name="jenkinsRegressionMatrix" value="env: DEMO, branch: carina; env:PROD, branch: prod"/>
@@ -18,3 +18,4 @@
         </classes>
     </test>
 </suite>
+
