@@ -15,6 +15,7 @@
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="com.solvd.MobileTests"/>
+            <class name="com.solvd.UnauthenticatedTests"/>
         </classes>
     </test>
 </suite>
