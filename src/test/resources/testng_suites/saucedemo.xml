@@ -1,6 +1,6 @@
 <?xml version ="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="First Suite" parallel="tests">
+<suite name="SauceDEMO" parallel="tests">
     <parameter name="suiteOwner" value="lballetti"/>
     <parameter name="jenkinsJobName" value="Job1"/>
     <parameter name="jenkinsJobType" value="web"/>
@@ -11,13 +11,10 @@
     <parameter name="jenkinsRegressionMatrix" value="env: DEMO, branch: carina; env:PROD, branch: prod"/>
 
 
-    <test name="Test Automation chrome">
+    <test name="Test Automation with cookies">
         <parameter name="browserName" value="chrome"/>
         <classes>
-            <class name="com.solvd.UnauthenticatedTests"/>
-            <class name="com.solvd.AuthenticatedTests"/>
+            <class name="com.solvd.SaucedemoTests"/>
         </classes>
     </test>
 </suite>
-
-<!-- 115cb1534b5ca413b1031a128e635025c2 -->

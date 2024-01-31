@@ -1,8 +1,10 @@
 package com.solvd;
 
+import org.openqa.selenium.Cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,12 +20,20 @@ public class AuthenticatedTests implements IAbstractTest{
     
     private static final Logger logger = LoggerFactory.getLogger(AuthenticatedTests.class);
 
-    @BeforeMethod
+    Cookie cookie1;
+
+    @BeforeClass
     public void beforeClassMethod(){
         HomepageBase homepage = initPage(HomepageBase.class, getDriver());
         homepage.open();
         AuthPageBase authPage = homepage.getHeader().clickAuth();
         authPage.login("riroy86360@jybra.com", "Thisistestingaccount1.");
+        cookie1 = getDriver().manage().getCookieNamed("sessionid");
+    }
+
+    @BeforeMethod
+    public void beforeMethodMethod(){
+        getDriver().manage().addCookie(cookie1);
     }
 
     @Test
