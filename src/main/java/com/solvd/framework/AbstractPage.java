@@ -17,7 +17,7 @@ public abstract class AbstractPage {
     private WebDriver driver;
     private static final Logger logger = LoggerFactory.getLogger(AbstractPage.class);
     private Wait<WebDriver> wait;
-    
+
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -40,23 +40,24 @@ public abstract class AbstractPage {
         }
     }
 
-    protected void sendKeys(WebElement element, String elementName, String text){
+    protected void sendKeys(WebElement element, String elementName, String text) {
         try {
             deleteAds();
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.sendKeys(text);
-            logger.info("'"+text + "' written into " + elementName);
+            logger.info("'" + text + "' written into " + elementName);
         } catch (Exception e) {
             logger.error("Error sending keys to " + elementName, e);
         }
     }
 
-    protected void refreshElements(){
+    protected void refreshElements() {
         PageFactory.initElements(driver, this);
     }
 
-    private void deleteAds(){
+    private void deleteAds() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
+        js.executeScript(
+                "const elements = document.getElementsByClassName('adsbygoogle adsbygoogle-noablate'); while (elements.length > 0) elements[0].remove()");
     }
 }

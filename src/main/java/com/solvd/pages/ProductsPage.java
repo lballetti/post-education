@@ -9,9 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
-public class ProductsPage extends BasePage{
+public class ProductsPage extends BasePage {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
 
@@ -28,19 +26,19 @@ public class ProductsPage extends BasePage{
         super(driver);
     }
 
-    public void logItems(){
+    public void logItems() {
         for (WebElement webElement : products) {
             logger.info(webElement.findElement(By.cssSelector(".productinfo p")).getText());
         }
     }
 
-    public ProductsPage search(String s){
+    public ProductsPage search(String s) {
         sendKeys(searchInput, "Search Input", s);
         click(submitSearch, "Search button");
         return new ProductsPage(getDriver());
     }
 
-    public List<WebElement> getProducts(){
+    public List<WebElement> getProducts() {
         return products;
     }
 }

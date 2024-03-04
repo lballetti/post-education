@@ -20,7 +20,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 public abstract class AbstractTest {
-    
+
     private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     protected Properties properties = new Properties();
     protected String url;
@@ -29,10 +29,12 @@ public abstract class AbstractTest {
     public WebDriver getDriver() {
         return driver.get();
     }
+
     public void setDriver(WebDriver driver) {
         this.driver.set(driver);
     }
-    public AbstractTest(){
+
+    public AbstractTest() {
         try {
             properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
             url = properties.getProperty("url");
@@ -42,31 +44,32 @@ public abstract class AbstractTest {
         }
     }
 
-    @Parameters({"browserName"})
+    @Parameters({ "browserName" })
     @BeforeMethod
-    public void beforeMethodMethod(@Optional("chrome") String browsername){
+    public void beforeMethodMethod(@Optional("chrome") String browsername) {
         setUpDriver(browsername);
     }
 
     @AfterMethod
-    public void afterMethoMethod(ITestResult result) throws IOException{
-        if(ITestResult.FAILURE == result.getStatus()){
+    public void afterMethoMethod(ITestResult result) throws IOException {
+        if (ITestResult.FAILURE == result.getStatus()) {
             File screenshotFile = ((TakesScreenshot) driver.get()).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshotFile, new File("target/surefire-reports/screenshots/"+result.getTestName() + "Error.png"));
+            FileUtils.copyFile(screenshotFile,
+                    new File("target/surefire-reports/screenshots/" + result.getTestName() + "Error.png"));
         }
         getDriver().close();
         driver.remove();
     }
-    
+
     @Parameters()
-    public void setUpDriver(String browserName){
-        if(browserName.equalsIgnoreCase("chrome")){
+    public void setUpDriver(String browserName) {
+        if (browserName.equalsIgnoreCase("chrome")) {
             setDriver(new ChromeDriver());
-        }else if (browserName.equalsIgnoreCase("safari")){
+        } else if (browserName.equalsIgnoreCase("safari")) {
             setDriver(new SafariDriver());
-        }else if (browserName.equalsIgnoreCase("firefox")) {
+        } else if (browserName.equalsIgnoreCase("firefox")) {
             setDriver(new FirefoxDriver());
-        }else{
+        } else {
             logger.error("Browser name not supported");
         }
     }

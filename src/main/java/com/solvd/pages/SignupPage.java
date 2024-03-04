@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignupPage extends BasePage{
+public class SignupPage extends BasePage {
 
     @FindBy(css = "[data-qa='password']")
     private WebElement passInput;
@@ -26,7 +26,7 @@ public class SignupPage extends BasePage{
 
     @FindBy(css = "[data-qa='zipcode']")
     private WebElement zip;
-    
+
     @FindBy(css = "[data-qa='mobile_number']")
     private WebElement mobileNumber;
 
@@ -36,8 +36,8 @@ public class SignupPage extends BasePage{
     public SignupPage(WebDriver driver) {
         super(driver);
     }
-    
-    public MessagePage fillWithStandardData(){
+
+    public MessagePage fillWithStandardData() {
         sendKeys(passInput, "Password Input", "deletepass");
         sendKeys(firstName, "First name input", "delete");
         sendKeys(lastName, "Last name input", "account");

@@ -8,7 +8,7 @@ import com.solvd.framework.AbstractPage;
 
 public class BasePage extends AbstractPage {
 
-    // Header locators 
+    // Header locators
     // ----------------------------------------------------------------
     // Unauthenticated
     @FindBy(css = ".logo a")
@@ -20,7 +20,7 @@ public class BasePage extends AbstractPage {
     @FindBy(css = ".nav i.fa-shopping-cart")
     private WebElement cartBtn;
     @FindBy(css = ".nav i.fa-lock")
-    private WebElement authBtn;
+    private WebElement loginBtn;
     @FindBy(css = ".nav i.fa-envelope")
     private WebElement contactBtn;
 
@@ -38,9 +38,9 @@ public class BasePage extends AbstractPage {
         click(logo, "Logo");
     }
 
-    public Homepage clickHome() {
+    public HomePage clickHome() {
         click(homeBtn, "Home button");
-        return new Homepage(getDriver());
+        return new HomePage(getDriver());
     }
 
     public ProductsPage clickProducts() {
@@ -52,21 +52,21 @@ public class BasePage extends AbstractPage {
         click(cartBtn, "Cart button");
     }
 
-    public AuthPage clickAuth() {
-        click(authBtn, "Signup/login button");
-        return new AuthPage(getDriver());
+    public LoginPage clickLogin() {
+        click(loginBtn, "Signup/login button");
+        return new LoginPage(getDriver());
     }
 
     public void clickContact() {
         click(contactBtn, "Contact us button");
     }
 
-    public MessagePage clickDeleteAcc(){
+    public MessagePage clickDeleteAcc() {
         click(deleteAccount, "Delete Account Button");
         return new MessagePage(getDriver());
     }
 
-    public boolean isLoggedin(){
+    public boolean isLoggedin() {
         refreshElements();
         return loggedinMessage.isDisplayed();
     }

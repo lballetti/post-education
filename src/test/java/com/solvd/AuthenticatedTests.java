@@ -7,28 +7,28 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.solvd.framework.AbstractTest;
-import com.solvd.pages.AuthPage;
+import com.solvd.pages.LoginPage;
 import com.solvd.pages.CartPage;
 import com.solvd.pages.CheckoutPage;
-import com.solvd.pages.Homepage;
+import com.solvd.pages.HomePage;
 import com.solvd.pages.MessagePage;
 import com.solvd.pages.PaymentPage;
 
-public class AuthenticatedTests extends AbstractTest{
-    
+public class AuthenticatedTests extends AbstractTest {
+
     private static final Logger logger = LoggerFactory.getLogger(AuthenticatedTests.class);
-    private Homepage homepage;
+    private HomePage homepage;
 
     @BeforeMethod
-    public void beforeClassMethod(){
+    public void beforeClassMethod() {
         getDriver().get(url);
-        homepage = new Homepage(getDriver());
-        AuthPage authPage = homepage.clickAuth();
+        homepage = new HomePage(getDriver());
+        LoginPage authPage = homepage.clickLogin();
         authPage.login("riroy86360@jybra.com", "Thisistestingaccount1.");
     }
 
     @Test
-    public void checkoutTest(){
+    public void checkoutTest() {
         CartPage cartPage = homepage.addToCartandView(0);
         CheckoutPage checkoutPage = cartPage.clickCheckout();
         PaymentPage paymentPage = checkoutPage.clickPlaceOrder();
@@ -43,7 +43,7 @@ public class AuthenticatedTests extends AbstractTest{
     }
 
     @Test
-    public void removeItemFromCartTest(){
+    public void removeItemFromCartTest() {
         CartPage cartPage = homepage.addToCartandView(0);
         cartPage.deleteFromCart(0);
         Assert.assertTrue(cartPage.getCartItems().get(0).isDisplayed());

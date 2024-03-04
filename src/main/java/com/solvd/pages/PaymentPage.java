@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PaymentPage extends BasePage{
-    
+public class PaymentPage extends BasePage {
+
     @FindBy(css = "[data-qa='name-on-card']")
     private WebElement nameOnCardInput;
 
@@ -27,28 +27,28 @@ public class PaymentPage extends BasePage{
     protected PaymentPage(WebDriver driver) {
         super(driver);
     }
-    
-    public void setCardName(String cardName){
+
+    public void setCardName(String cardName) {
         sendKeys(nameOnCardInput, "Name on Card Input", cardName);
     }
 
-    public void setCardNumber(String cardNumber){
+    public void setCardNumber(String cardNumber) {
         sendKeys(cardNumberInput, "Card Number Input", cardNumber);
     }
 
-    public void setCVC(int cvc){
-        sendKeys(cvcInput, "cvc Input", cvc+"");
+    public void setCVC(int cvc) {
+        sendKeys(cvcInput, "cvc Input", cvc + "");
     }
 
-    public void setExpiryMonth(int month){
-        sendKeys(expiryMonthInput, "Expiry month Input", month+"");
+    public void setExpiryMonth(int month) {
+        sendKeys(expiryMonthInput, "Expiry month Input", month + "");
     }
 
-    public void setExpiryYear(int year){
-        sendKeys(expiryYearInput, "Expiry Year Input", year+"");
+    public void setExpiryYear(int year) {
+        sendKeys(expiryYearInput, "Expiry Year Input", year + "");
     }
 
-    public MessagePage clickPay(){
+    public MessagePage clickPay() {
         click(payBtn, "Pay Button");
         return new MessagePage(getDriver());
     }
