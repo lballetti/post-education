@@ -6,17 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.solvd.common.CartPageBase;
-import com.solvd.common.HomepageBase;
-import com.solvd.components.Header;
+import com.solvd.common.HomePageBase;
 import com.solvd.components.ItemBox;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomepageBase.class)
-public class Homepage extends HomepageBase {
-    
-    @FindBy(id = "header")
-    private Header header;
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
+public class HomePage extends HomePageBase {
 
     @FindBy(css = ".features_items div.col-sm-4")
     private List<ItemBox> products;
@@ -24,7 +20,7 @@ public class Homepage extends HomepageBase {
     @FindBy(css = "#cartModal a")
     private ExtendedWebElement viewCartModalButton;
 
-    public Homepage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 
@@ -47,9 +43,6 @@ public class Homepage extends HomepageBase {
         return initPage(CartPageBase.class, driver);
     }
     
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
 
 }

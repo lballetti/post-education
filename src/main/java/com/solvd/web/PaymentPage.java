@@ -5,15 +5,11 @@ import org.openqa.selenium.support.FindBy;
 
 import com.solvd.common.MessagePageBase;
 import com.solvd.common.PaymentPageBase;
-import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = PaymentPageBase.class)
 public class PaymentPage extends PaymentPageBase{
-
-    @FindBy(id = "header")
-    private Header header;
     
     @FindBy(css = "[data-qa='name-on-card']")
     private ExtendedWebElement nameOnCardInput;
@@ -77,8 +73,4 @@ public class PaymentPage extends PaymentPageBase{
         setExpiryYear(2024);
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
 }

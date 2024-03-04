@@ -77,9 +77,6 @@ public class PaymentPage extends PaymentPageBase{
         setExpiryYear(2024);
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
     
 }

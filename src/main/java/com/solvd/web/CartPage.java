@@ -8,15 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import com.solvd.common.CartPageBase;
 import com.solvd.common.CheckoutPageBase;
 import com.solvd.components.CartItem;
-import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = CartPageBase.class)
 public class CartPage extends CartPageBase{
-
-    @FindBy(id = "header")
-    private Header header;
 
     @FindBy(css = "div.cart_info tbody tr")
     private List<CartItem> cartItems;
@@ -56,8 +52,4 @@ public class CartPage extends CartPageBase{
                 .get() != null;
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
 }

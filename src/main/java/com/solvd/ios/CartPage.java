@@ -56,9 +56,6 @@ public class CartPage extends CartPageBase{
                 .get() != null;
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
     
 }

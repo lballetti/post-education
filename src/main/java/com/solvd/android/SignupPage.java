@@ -46,10 +46,7 @@ public class SignupPage extends SignupPageBase{
         super(driver);
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
     
     @Override
     public MessagePageBase fillWithStandardData(){

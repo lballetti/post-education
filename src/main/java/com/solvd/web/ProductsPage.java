@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.solvd.common.ProductsPageBase;
-import com.solvd.components.Header;
 import com.solvd.components.ItemBox;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -18,9 +17,6 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 public class ProductsPage extends ProductsPageBase{
 
     private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
-
-    @FindBy(id = "header")
-    private Header header;
 
     @FindBy(css = ".features_items div.col-sm-4")
     private List<ItemBox> products;
@@ -57,8 +53,4 @@ public class ProductsPage extends ProductsPageBase{
                 .get() != null;
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
 }

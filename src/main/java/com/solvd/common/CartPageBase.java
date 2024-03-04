@@ -1,10 +1,8 @@
 package com.solvd.common;
 
 import org.openqa.selenium.WebDriver;
-import com.solvd.components.Header;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 
-public abstract class CartPageBase extends AbstractPage{
+public abstract class CartPageBase extends SitePageBase{
 
     public CartPageBase(WebDriver driver) {
         super(driver);
@@ -18,5 +16,4 @@ public abstract class CartPageBase extends AbstractPage{
 
     public abstract boolean isItemPresent(String name);
 
-    public abstract Header getHeader();
 }

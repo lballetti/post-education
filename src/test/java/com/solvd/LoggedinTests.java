@@ -6,29 +6,29 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.solvd.common.AuthPageBase;
+import com.solvd.common.LoginPageBase;
 import com.solvd.common.CartPageBase;
 import com.solvd.common.CheckoutPageBase;
-import com.solvd.common.HomepageBase;
+import com.solvd.common.HomePageBase;
 import com.solvd.common.MessagePageBase;
 import com.solvd.common.PaymentPageBase;
 import com.zebrunner.carina.core.IAbstractTest;
 
-public class AuthenticatedTests implements IAbstractTest{
+public class LoggedinTests implements IAbstractTest{
     
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticatedTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoggedinTests.class);
 
     @BeforeMethod
     public void beforeClassMethod(){
-        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
+        HomePageBase homepage = initPage(HomePageBase.class, getDriver());
         homepage.open();
-        AuthPageBase authPage = homepage.getHeader().clickAuth();
-        authPage.login("riroy86360@jybra.com", "Thisistestingaccount1.");
+        LoginPageBase loginPage = homepage.getHeaderMenu().clickAuth();
+        loginPage.getLoginForm().login("riroy86360@jybra.com", "Thisistestingaccount1.");
     }
 
     @Test
     public void checkoutTest(){
-        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
+        HomePageBase homepage = initPage(HomePageBase.class, getDriver());
         CartPageBase cartPage = homepage.addToCartandView(0);
         CheckoutPageBase checkoutPage = cartPage.clickCheckout();
         PaymentPageBase paymentPage = checkoutPage.clickPlaceOrder();
@@ -44,7 +44,7 @@ public class AuthenticatedTests implements IAbstractTest{
 
     @Test
     public void removeItemFromCartTest(){
-        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
+        HomePageBase homepage = initPage(HomePageBase.class, getDriver());
         CartPageBase cartPage = homepage.addToCartandView("Men Tshirt");
         cartPage.deleteFromCart("Men Tshirt");
         Assert.assertTrue(cartPage.isItemPresent("Men Tshirt"));

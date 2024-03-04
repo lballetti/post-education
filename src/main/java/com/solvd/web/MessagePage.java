@@ -3,17 +3,13 @@ package com.solvd.web;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.solvd.common.HomepageBase;
+import com.solvd.common.HomePageBase;
 import com.solvd.common.MessagePageBase;
-import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = MessagePageBase.class)
 public class MessagePage extends MessagePageBase{
-
-    @FindBy(id = "header")
-    private Header header;
 
     @FindBy(css = "[data-qa='continue-button']")
     private ExtendedWebElement continueBtn;
@@ -31,13 +27,10 @@ public class MessagePage extends MessagePageBase{
     }
 
     @Override
-    public HomepageBase clickContinue(){
+    public HomePageBase clickContinue(){
         continueBtn.click();
-        return initPage(HomepageBase.class, driver);
+        return initPage(HomePageBase.class, driver);
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
 }

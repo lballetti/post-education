@@ -6,9 +6,9 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.solvd.common.AuthPageBase;
+import com.solvd.common.LoginPageBase;
 import com.solvd.common.CartPageBase;
-import com.solvd.common.HomepageBase;
+import com.solvd.common.HomePageBase;
 import com.solvd.common.MessagePageBase;
 import com.solvd.common.ProductsPageBase;
 import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
@@ -44,9 +44,9 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory{
         click(logo);
     }
 
-    public HomepageBase clickHome() {
+    public HomePageBase clickHome() {
         click(homeBtn);
-        return initPage(HomepageBase.class, driver);
+        return initPage(HomePageBase.class, driver);
     }
 
     public ProductsPageBase clickProducts() {
@@ -59,9 +59,9 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory{
         return initPage(CartPageBase.class, driver);
     }
 
-    public AuthPageBase clickAuth() {
+    public LoginPageBase clickAuth() {
         click(authBtn);
-        return initPage(AuthPageBase.class, driver);
+        return initPage(LoginPageBase.class, driver);
     }
 
     public void clickContact() {

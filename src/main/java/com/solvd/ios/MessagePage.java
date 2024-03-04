@@ -3,7 +3,7 @@ package com.solvd.ios;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.solvd.common.HomepageBase;
+import com.solvd.common.HomePageBase;
 import com.solvd.common.MessagePageBase;
 import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -31,14 +31,11 @@ public class MessagePage extends MessagePageBase{
     }
 
     @Override
-    public HomepageBase clickContinue(){
+    public HomePageBase clickContinue(){
         continueBtn.click();
-        return initPage(HomepageBase.class, driver);
+        return initPage(HomePageBase.class, driver);
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
     
 }

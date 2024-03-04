@@ -57,8 +57,5 @@ public class ProductsPage extends ProductsPageBase{
                 .get() != null;
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
 }

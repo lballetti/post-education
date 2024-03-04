@@ -28,9 +28,6 @@ public class CheckoutPage extends CheckoutPageBase{
         return initPage(PaymentPageBase.class, driver);
     }
 
-    @Override
-    public Header getHeader() {
-        return header;
-    }
+
     
 }

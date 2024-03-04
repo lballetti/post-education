@@ -5,15 +5,11 @@ import org.openqa.selenium.support.FindBy;
 
 import com.solvd.common.MessagePageBase;
 import com.solvd.common.SignupPageBase;
-import com.solvd.components.Header;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = SignupPageBase.class)
 public class SignupPage extends SignupPageBase{
-
-    @FindBy(id = "header")
-    private Header header;
 
     @FindBy(css = "[data-qa='password']")
     private ExtendedWebElement passInput;
@@ -44,11 +40,6 @@ public class SignupPage extends SignupPageBase{
 
     public SignupPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public Header getHeader() {
-        return header;
     }
     
     @Override

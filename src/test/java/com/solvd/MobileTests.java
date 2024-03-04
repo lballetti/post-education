@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-import com.solvd.common.HomepageBase;
+import com.solvd.common.HomePageBase;
 import com.solvd.common.ProductsPageBase;
 import com.solvd.common.mobile.BrowserPageBase;
 import com.zebrunner.carina.core.IAbstractTest;
@@ -16,12 +16,12 @@ public class MobileTests implements IAbstractTest, IMobileUtils{
  
     @Test(testName = "new Tab test")
     public void searchNewTabAndroidTest(){
-        HomepageBase homepage = initPage(HomepageBase.class, getDriver());
+        HomePageBase homepage = initPage(HomePageBase.class, getDriver());
         homepage.open();
         BrowserPageBase browserPageBase = initPage(BrowserPageBase.class, getDriver());
         browserPageBase.newTab();
         getDriver().get("https://www.automationexercise.com/");
-        ProductsPageBase productsPage = homepage.getHeader().clickProducts();
+        ProductsPageBase productsPage = homepage.getHeaderMenu().clickProducts();
         productsPage.logItems();
         logger.info("searchItemsTest PASSED");
     }
